@@ -1,0 +1,7 @@
+C:\Users\DanKor1498\Desktop\Taxi\Taxi\bin\Debug\Taxi.exe.config
+C:\Users\DanKor1498\Desktop\Taxi\Taxi\bin\Debug\Taxi.exe
+C:\Users\DanKor1498\Desktop\Taxi\Taxi\bin\Debug\Taxi.pdb
+C:\Users\DanKor1498\Desktop\Taxi\Taxi\obj\Debug\Taxi.csprojAssemblyReference.cache
+C:\Users\DanKor1498\Desktop\Taxi\Taxi\obj\Debug\Taxi.csproj.CoreCompileInputs.cache
+C:\Users\DanKor1498\Desktop\Taxi\Taxi\obj\Debug\Taxi.exe
+C:\Users\DanKor1498\Desktop\Taxi\Taxi\obj\Debug\Taxi.pdb
