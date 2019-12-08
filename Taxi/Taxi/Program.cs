@@ -22,6 +22,7 @@ namespace Taxi
         enum Tariff { OneRide = 1, RegularCustomer = 2, Subscription = 3 };
         int[] id;
         int[] km;
+
         public int Profit { get; private set; }
         public Taxi(Value[] cInf, Value[] rInf)
         {
@@ -35,61 +36,75 @@ namespace Taxi
             //{
             //    Console.WriteLine(i);
             //}
+            //Console.WriteLine(customerKm.GetType().ToString());
 
             foreach (var g in tariffId)
             {
                 Console.WriteLine("Тариф - " + (Tariff)(g.Key));
+                Value[] values;
                 foreach (var t in g)
                 {
-                    var c = from ff in customerKm
-                            where t.id == ff.Key
-                            select ff;
-                    foreach (var i in c)
+                    Console.WriteLine(t.id);
+                    switch ((Tariff)g.Key)
                     {
-                        Console.WriteLine(i.Key);
-                        Value[] a = i.ToArray();
-                        foreach (var j in a)
-                        {
-                            Console.WriteLine(j.id);
-                        }
+                        case Tariff.OneRide:
+                            values = customerKm.First(k => k.Key == t.id).ToArray();
+                            Console.WriteLine(CalculateOneRide(values));
+                            break;
+                        case Tariff.RegularCustomer:
+                            values = customerKm.First(k => k.Key == t.id).ToArray();
+                            Console.WriteLine(CalculateRegularCustomer(values));
+                            break;
+                        case Tariff.Subscription:
+                            values = customerKm.First(k => k.Key == t.id).ToArray();
+                            Console.WriteLine(CalculateSubscription(values));
+                            break;
                     }
-
-                }
-                Console.WriteLine();
+                }                
             }
-       
+            Console.WriteLine();
 
-
-            //foreach (var g in phoneG)
+            //foreach (var g in customerKm)
             //{
-            //    Console.WriteLine("ID - " + g.Key);
+            //    Console.WriteLine("ID - " + (g.Key));
             //    foreach (var t in g)
+            //    {
             //        Console.WriteLine(t.id);
-            //    Console.WriteLine();
+            //    }
             //}
         }
 
-        int CalculateOneRide(int[] k) => k.Sum() * 8;
-        
-        int CalculateRegularCustomer(int[] k)
+        int CalculateOneRide(Value[] k)
         {
+            var kk = from i in k
+                       select i.id;
+            return kk.ToArray().Sum() * 8;
+        }
+        int CalculateRegularCustomer(Value[] kK)
+        {
+            var v = from i in kK
+                     select i.id;
+            int[] k = v.ToArray();
             int sale = 0;
             int sum = 0;
             for(int i = 0; i < k.Length; i++)
             {
-                sum += (k[i] * 6 + sale) < 0 ? 0 : (k[i] * 6 + sale);
-                sale = (k[i] * 6 + sale) / 2 < 0 ? 0 : (k[i] * 6 + sale) / 2;
+                sum += (k[i] * 6 - sale) < 0 ? 0 : (k[i] * 6 - sale);
+                sale = (k[i] * 6 - sale) / 2 < 0 ? 0 : (k[i] * 6 - sale) / 2;
             }
             return sum;
         }
 
-        int CalculateSubscription(int[] k)
+        int CalculateSubscription(Value[] kK)
         {
-            if(k.Sum() < 100)
+            var v = from i in kK
+                    select i.id;
+            int[] k = v.ToArray();
+            if (k.Sum() < 100)
             {
                 return k.Sum() * 6;
             }
-            return 600 + (k.Sum() - 100 * 4);
+            return 600 + ((k.Sum() - 100) * 4);
         }
     }
 
