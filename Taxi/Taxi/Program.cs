@@ -1,110 +1,94 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Taxi
 {
     struct Value
     {
-        public int t;
-        public int id;
-        public Value(int t, int id)
-        {
-            this.t = t;
-            this.id = id;
-        }
+        public int val_1;
+        public int val_2;
 
+        public Value(int v_1, int v_2)
+        {
+            this.val_1 = v_1;
+            this.val_2 = v_2;
+        }
     }
     class Taxi
     {
         enum Tariff { OneRide = 1, RegularCustomer = 2, Subscription = 3 };
-        int[] id;
-        int[] km;
 
         public int Profit { get; private set; }
-        public Taxi(Value[] cInf, Value[] rInf)
+
+        public Taxi(Value[] customersInfo, Value[] ridesInfo)
         {
-            var tariffId = from c in cInf
-                              group c by c.t;
+            var tariffId = from t in customersInfo
+                              group t by t.val_1;
 
-            var customerKm = from c in rInf
-                         group c by c.t;
+            var customerKilometers = from c in ridesInfo
+                         group c by c.val_1;
 
-            //for(int i = 0; i < tariffId.Count(); i++)
-            //{
-            //    Console.WriteLine(i);
-            //}
-            //Console.WriteLine(customerKm.GetType().ToString());
+            Profit = 0;
 
-            foreach (var g in tariffId)
+            foreach (var tariff in tariffId)
             {
-                Console.WriteLine("Тариф - " + (Tariff)(g.Key));
+                //Console.WriteLine("Тариф - " + (Tariff)(g.Key));
                 Value[] values;
-                foreach (var t in g)
+                foreach (var t in tariff)
                 {
-                    Console.WriteLine(t.id);
-                    switch ((Tariff)g.Key)
+                    //Console.WriteLine(t.id);
+                    switch ((Tariff)tariff.Key)
                     {
                         case Tariff.OneRide:
-                            values = customerKm.First(k => k.Key == t.id).ToArray();
-                            Console.WriteLine(CalculateOneRide(values));
+                            values = customerKilometers.First(k => k.Key == t.val_2).ToArray();
+                            Profit += CalculateOneRide(values);
                             break;
                         case Tariff.RegularCustomer:
-                            values = customerKm.First(k => k.Key == t.id).ToArray();
-                            Console.WriteLine(CalculateRegularCustomer(values));
+                            values = customerKilometers.First(k => k.Key == t.val_2).ToArray();
+                            Profit += CalculateRegularCustomer(values);
                             break;
                         case Tariff.Subscription:
-                            values = customerKm.First(k => k.Key == t.id).ToArray();
-                            Console.WriteLine(CalculateSubscription(values));
+                            values = customerKilometers.First(k => k.Key == t.val_2).ToArray();
+                            Profit += CalculateSubscription(values);
                             break;
                     }
                 }                
-            }
-            Console.WriteLine();
-
-            //foreach (var g in customerKm)
-            //{
-            //    Console.WriteLine("ID - " + (g.Key));
-            //    foreach (var t in g)
-            //    {
-            //        Console.WriteLine(t.id);
-            //    }
-            //}
+            }            
         }
 
-        int CalculateOneRide(Value[] k)
+        int CalculateOneRide(Value[] values)
         {
-            var kk = from i in k
-                       select i.id;
-            return kk.ToArray().Sum() * 8;
+            var array = from i in values
+                       select i.val_2;
+            return array.ToArray().Sum() * 8;
         }
-        int CalculateRegularCustomer(Value[] kK)
+
+        int CalculateRegularCustomer(Value[] values)
         {
-            var v = from i in kK
-                     select i.id;
-            int[] k = v.ToArray();
+            var v = from i in values
+                     select i.val_2;
+            int[] array = v.ToArray();
             int sale = 0;
             int sum = 0;
-            for(int i = 0; i < k.Length; i++)
+            for(int i = 0; i < array.Length; i++)
             {
-                sum += (k[i] * 6 - sale) < 0 ? 0 : (k[i] * 6 - sale);
-                sale = (k[i] * 6 - sale) / 2 < 0 ? 0 : (k[i] * 6 - sale) / 2;
+                sum += (array[i] * 6 - sale) < 0 ? 0 : (array[i] * 6 - sale);
+                sale = (array[i] * 6 - sale) / 2 < 0 ? 0 : (array[i] * 6 - sale) / 2;
             }
             return sum;
         }
 
-        int CalculateSubscription(Value[] kK)
+        int CalculateSubscription(Value[] values)
         {
-            var v = from i in kK
-                    select i.id;
-            int[] k = v.ToArray();
-            if (k.Sum() < 100)
+            var v = from i in values
+                    select i.val_2;
+            int[] array = v.ToArray();
+            if (array.Sum() < 100)
             {
-                return k.Sum() * 6;
+                return array.Sum() * 6;
             }
-            return 600 + ((k.Sum() - 100) * 4);
+            return 600 + ((array.Sum() - 100) * 4);
         }
     }
 
@@ -124,31 +108,15 @@ namespace Taxi
                 v2.Add(new Value(int.Parse(arrayInput[i++]), int.Parse(arrayInput[i])));
             }
         }
+
         static void Main(string[] args)
         {
-            //Value[] value = new Value[4]{new Value(1, 0),
-            //    new Value(2, 1),
-            //    new Value(2, 2),
-            //    new Value(3, 3) };
-            string input = "1 0 2 1 2 2 3 3 -1 0 30 1 50 0 15 1 20 2 30 2 50 3 70 3 50 2 100 3 10 -1";
+            string input = Console.ReadLine();
             List<Value> v1 = new List<Value>();
             List<Value> v2 = new List<Value>();
             ReadString(input, v1, v2);
             Taxi taxi = new Taxi(v1.ToArray(), v2.ToArray());
-            
-            
-            //int[] list = { 11, 4, 3, 7, 12 };
-
-            //var indexes = list.Select((item, index) => new { Item = item, Index = index })
-            //         //.Where(n => n.Index % 2 == 0)
-            //         .Select(n => n);
-
-
-            //Console.WriteLine("Even numbers:");
-            //foreach (var index in indexes)
-            //{
-            //    Console.WriteLine(index);
-            //}
+            Console.Write(taxi.Profit);
         }
     }
 }
