@@ -1,0 +1,7 @@
+E:\Documents\Предмети\Програмування\TrainingFolder\Test\Test\bin\Debug\Test.exe.config
+E:\Documents\Предмети\Програмування\TrainingFolder\Test\Test\bin\Debug\Test.exe
+E:\Documents\Предмети\Програмування\TrainingFolder\Test\Test\bin\Debug\Test.pdb
+E:\Documents\Предмети\Програмування\TrainingFolder\Test\Test\obj\Debug\Test.csprojAssemblyReference.cache
+E:\Documents\Предмети\Програмування\TrainingFolder\Test\Test\obj\Debug\Test.csproj.CoreCompileInputs.cache
+E:\Documents\Предмети\Програмування\TrainingFolder\Test\Test\obj\Debug\Test.exe
+E:\Documents\Предмети\Програмування\TrainingFolder\Test\Test\obj\Debug\Test.pdb
