@@ -1,0 +1,15 @@
+E:\Documents\Предмети\Програмування\TrainingFolder\EventTest\EventTest\bin\Debug\EventTest.exe.config
+E:\Documents\Предмети\Програмування\TrainingFolder\EventTest\EventTest\bin\Debug\EventTest.exe
+E:\Documents\Предмети\Програмування\TrainingFolder\EventTest\EventTest\bin\Debug\EventTest.pdb
+E:\Documents\Предмети\Програмування\TrainingFolder\EventTest\EventTest\obj\Debug\EventTest.csprojAssemblyReference.cache
+E:\Documents\Предмети\Програмування\TrainingFolder\EventTest\EventTest\obj\Debug\MainWindow.g.cs
+E:\Documents\Предмети\Програмування\TrainingFolder\EventTest\EventTest\obj\Debug\App.g.cs
+E:\Documents\Предмети\Програмування\TrainingFolder\EventTest\EventTest\obj\Debug\EventTest_MarkupCompile.cache
+E:\Documents\Предмети\Програмування\TrainingFolder\EventTest\EventTest\obj\Debug\EventTest_MarkupCompile.lref
+E:\Documents\Предмети\Програмування\TrainingFolder\EventTest\EventTest\obj\Debug\MainWindow.baml
+E:\Documents\Предмети\Програмування\TrainingFolder\EventTest\EventTest\obj\Debug\EventTest.g.resources
+E:\Documents\Предмети\Програмування\TrainingFolder\EventTest\EventTest\obj\Debug\EventTest.Properties.Resources.resources
+E:\Documents\Предмети\Програмування\TrainingFolder\EventTest\EventTest\obj\Debug\EventTest.csproj.GenerateResource.cache
+E:\Documents\Предмети\Програмування\TrainingFolder\EventTest\EventTest\obj\Debug\EventTest.csproj.CoreCompileInputs.cache
+E:\Documents\Предмети\Програмування\TrainingFolder\EventTest\EventTest\obj\Debug\EventTest.exe
+E:\Documents\Предмети\Програмування\TrainingFolder\EventTest\EventTest\obj\Debug\EventTest.pdb
