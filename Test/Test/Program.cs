@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Media;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,34 +12,39 @@ namespace Test
 {
     class Program
     {
-        delegate int MyDelegate(int a, int b);
-
-        static int Sum(int a, int b)
+        class MyClass
         {
-            return a + b;
-        }
+            public delegate void MyDelegate();
+            public event MyDelegate MyEvent;
+            public char C { get; set; }
 
-        static int Minus(int a, int b)
-        {
-            return a - b;
-        }
-
-        static int Mult(int a, int b)
-        {
-            return a * b;
+            public void Write()
+            {
+                while((C = Console.ReadKey().KeyChar) != 'q')
+                {
+                    if(C == 'd')
+                    {
+                        MyEvent?.Invoke();
+                    }
+                }
+            }
         }
         static void Main()
         {
-            MyDelegate myDelegate = new MyDelegate(Sum);
-            myDelegate += Minus;
-            myDelegate += Mult;
+            MyClass myClass = new MyClass();
+            myClass.MyEvent += Sound;
+            myClass.MyEvent += Sound2;
+            myClass.Write();
+        }
 
-            Delegate[] delegates = myDelegate.GetInvocationList();
-            for (int i = 0; i < delegates.Length; i++)
-            {
-                Console.WriteLine("№" + (i + 1) + " returned: " + 
-                    ((MyDelegate)delegates[i])(6, 5));
-            }
+        public static void Sound()
+        {
+            SystemSounds.Exclamation.Play();
+        }
+
+        public static void Sound2()
+        {
+            SystemSounds.Hand.Play();
         }
     }
 }
