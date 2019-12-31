@@ -6,45 +6,60 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
 
-
-
 namespace Test
 {
     class Program
     {
-        class MyClass
+        class Dream
         {
-            public delegate void MyDelegate();
-            public event MyDelegate MyEvent;
-            public char C { get; set; }
-
-            public void Write()
+            public string Goal { get; } 
+            
+            public Dream(string goal)
             {
-                while((C = Console.ReadKey().KeyChar) != 'q')
+                this.Goal = goal;
+            }
+
+            public Dream NextDream;
+        }
+        class QueueDream
+        {
+            public int Year { get; set; }//тут визначимо рік для цілей
+
+            Dream newDream;
+            Dream frontDream;
+            Dream prevDream = new Dream("");
+            public void AddDream(string dream)//мрію можна лише додати, забирати мрію - не правильно
+            {
+                newDream = new Dream(dream);
+                if(frontDream == null)
                 {
-                    if(C == 'd')
-                    {
-                        MyEvent?.Invoke();
-                    }
+                    frontDream = newDream;
+                }
+                prevDream.NextDream = newDream;
+                prevDream = newDream;
+            }
+
+            public void PrintDreams()
+            {
+                Console.WriteLine("Рiк - " + Year);
+                Dream iterator = frontDream;
+                while (iterator != null)
+                {
+                    Console.WriteLine(iterator.Goal);
+                    iterator = iterator.NextDream;
                 }
             }
         }
         static void Main()
         {
-            MyClass myClass = new MyClass();
-            myClass.MyEvent += Sound;
-            myClass.MyEvent += Sound2;
-            myClass.Write();
-        }
+            QueueDream queueDream = new QueueDream() { Year = 2020 };            
 
-        public static void Sound()
-        {
-            SystemSounds.Exclamation.Play();
-        }
+            queueDream.AddDream("Потрапити на роботу в AMC Bridge.");
+            queueDream.AddDream("Покращити свiй фiзичний стан.");
+            queueDream.AddDream("Прочитати бiльше книг.");
+            queueDream.AddDream("Купити гiтару.");
 
-        public static void Sound2()
-        {
-            SystemSounds.Hand.Play();
+            queueDream.PrintDreams();
         }
     }
 }
