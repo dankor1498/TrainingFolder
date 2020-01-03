@@ -14,161 +14,38 @@ using System;
 
 class Solution
 {
-    class MyColection<T> : IEnumerable<T>
+    class MyClass : IEnumerable
     {
-        private T[] array;
+        int[] array;
 
-        public MyColection()
+        public MyClass(int[] array)
         {
-            array = new T[0];
+            this.array = (int[])array.Clone();
         }
 
-        public void AddItem(T item)
+        public IEnumerator GetEnumerator()
         {
-            T[] copyArray = (T[])array.Clone();
-            array = new T[array.Length + 1];
-            Array.Copy(copyArray, array, copyArray.Length);
-            array[array.Length - 1] = item;
-        }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            return ((IEnumerable<T>)array).GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return ((IEnumerable<T>)array).GetEnumerator();
+            throw new NotImplementedException();
         }
     }
 
-    class Item<T>
+    class MyEnumerator : IEnumerator
     {
-        public T Value { get; set; }
-        public Item<T> PItem;
-    }
+        public object Current => throw new NotImplementedException();
 
-    class MyColection2<T> : IEnumerable<T>
-    {
-        Item<T> value;
-        Item<T> front;
-        Item<T> pointer = new Item<T>();
-
-        public MyColection2()
-        {
-            value = null;
-            front = null;
-            pointer = new Item<T>();
-        }
-
-        public MyColection2(int l)
-        {
-            Lenght = l;
-            for (int i = 0; i < l; i++)
-            {
-                value = new Item<T>() { Value = default(T) };
-                if (front == null)
-                {
-                    front = value;
-                }
-                pointer.PItem = value;
-                pointer = value;
-            }         
-        }
-
-        public int Lenght { get; private set; } = 0;
-
-        public void AddValue(T item)
-        {
-            value = new Item<T>() { Value = item };
-            if(front == null)
-            {
-                front = value;
-            }
-            pointer.PItem = value;
-            pointer = value;
-            Lenght++;
-        }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            Item<T> iterator = front;
-            while (iterator != null)
-            {
-                yield return iterator.Value;
-                iterator = iterator.PItem;
-            }
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
+        public bool MoveNext()
         {
             throw new NotImplementedException();
         }
 
-        public T this[int index]
+        public void Reset()
         {
-            get
-            {
-                if (index > Lenght - 1)
-                {
-                    Console.WriteLine("Error of index.");
-                    throw new IndexOutOfRangeException();
-                }
-                int i = 0;
-                Item<T> iterator = front;
-                while (i < index)
-                {
-                    iterator = iterator.PItem;
-                    i++;
-                }
-                return iterator.Value;
-            }
-            set
-            {
-                if (index > Lenght - 1)
-                {
-                    Console.WriteLine("Error of index.");
-                    throw new IndexOutOfRangeException();
-                }
-                int i = 0;
-                Item<T> iterator = front;
-                while (i < index)
-                {
-                    iterator = iterator.PItem;
-                    i++;
-                }
-                iterator.Value = value;
-            }
+            throw new NotImplementedException();
         }
     }
-    
+
     static void Main(string[] args)
     {
-        MyColection<int> m = new MyColection<int>();
-        for (int i = 0; i < 15; i++)
-        {
-            m.AddItem(i + 1);
-        }
-        foreach (var item in m)
-        {
-            Console.Write(item + " ");
-        }
-        Console.WriteLine();
 
-        MyColection2<int> m2 = new MyColection2<int>(10);
-        for (int i = 0; i < m2.Lenght; i++)
-        {
-            m2[i] = i + 1;
-        }        
-        Console.WriteLine();
-
-        m2.AddValue(11);
-
-        foreach (var item in m2)
-        {
-            Console.Write(item + " ");
-        }
-
-        Console.WriteLine();
     }
 }
