@@ -25,27 +25,54 @@ class Solution
 
         public IEnumerator GetEnumerator()
         {
-            throw new NotImplementedException();
+            return new MyEnumerator(this.array);
         }
     }
 
     class MyEnumerator : IEnumerator
     {
-        public object Current => throw new NotImplementedException();
+        int[] array;
+        int index;
+
+        public MyEnumerator(int[] array)
+        {
+            this.array = array;
+            index = this.array.Length;
+        }
+        public object Current => array[index];
 
         public bool MoveNext()
         {
-            throw new NotImplementedException();
+            if(index > 0)
+            {
+                index--;
+                return true;
+            }
+            return false;
         }
 
         public void Reset()
         {
-            throw new NotImplementedException();
+            index = this.array.Length;
         }
     }
 
     static void Main(string[] args)
     {
+        int[] ar = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        MyClass m = new MyClass(ar);
+        foreach(var i in m)
+        {
+            Console.Write(i + " ");
+        }
+        Console.WriteLine();
 
+        IEnumerator enumerator = new MyEnumerator(ar);
+        while (enumerator.MoveNext()) 
+        {
+            Console.Write(enumerator.Current + " ");
+        }
+        enumerator.Reset();
+        Console.WriteLine();
     }
 }
