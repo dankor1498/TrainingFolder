@@ -1,78 +1,78 @@
-﻿using System.CodeDom.Compiler;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Text.RegularExpressions;
 using System.Text;
-using System;
+using System.Threading.Tasks;
+using System.Dynamic;
 
-class Solution
+namespace Test
 {
-    class MyClass : IEnumerable
+    class Program
     {
-        int[] array;
-
-        public MyClass(int[] array)
+        class BinaryNode
         {
-            this.array = (int[])array.Clone();
-        }
-
-        public IEnumerator GetEnumerator()
-        {
-            return new MyEnumerator(this.array);
-        }
-    }
-
-    class MyEnumerator : IEnumerator
-    {
-        int[] array;
-        int index;
-
-        public MyEnumerator(int[] array)
-        {
-            this.array = array;
-            index = this.array.Length;
-        }
-        public object Current => array[index];
-
-        public bool MoveNext()
-        {
-            if(index > 0)
+            int Name;
+            string Side;
+            public BinaryNode LeftChild;
+            public BinaryNode RightChild;
+            public BinaryNode(int name)
             {
-                index--;
-                return true;
+                Name = name;
+                Side = "Top";
             }
-            return false;
+
+            static public void TraversePreorder(BinaryNode node)
+            {
+                Console.WriteLine(node.Side + " - " + node.Name);
+                if (node.LeftChild != null) TraversePreorder(node.LeftChild);
+                if (node.RightChild != null) TraversePreorder(node.RightChild);
+            }
+
+            public void AddNode(int value)
+            {
+                if (value < Name)
+                {
+                    if (LeftChild == null)
+                    {
+                        LeftChild = new BinaryNode(value);
+                        LeftChild.Side = "Left";
+                    }
+                    else
+                    {
+                        LeftChild.AddNode(value);
+                    }
+                }
+                else
+                {
+                    if (RightChild == null)
+                    {
+                        RightChild = new BinaryNode(value);
+                        RightChild.Side = "Right";
+                    }
+                    else
+                    {
+                        RightChild.AddNode(value);
+                    }
+                }
+            }
         }
 
-        public void Reset()
+        static void Main(string[] args)
         {
-            index = this.array.Length;
+            BinaryNode binary = new BinaryNode(0);
+            Random random = new Random();
+            int value;
+            for (int i = 0; i < 5; i++)
+            {
+                value = random.Next(-10, 10);
+                Console.WriteLine(value);
+                binary.AddNode(value);
+            }
+            Console.WriteLine();
+            BinaryNode.TraversePreorder(binary);
         }
-    }
 
-    static void Main(string[] args)
-    {
-        int[] ar = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        MyClass m = new MyClass(ar);
-        foreach(var i in m)
-        {
-            Console.Write(i + " ");
-        }
-        Console.WriteLine();
-
-        IEnumerator enumerator = new MyEnumerator(ar);
-        while (enumerator.MoveNext()) 
-        {
-            Console.Write(enumerator.Current + " ");
-        }
-        enumerator.Reset();
-        Console.WriteLine();
     }
 }
+
+
