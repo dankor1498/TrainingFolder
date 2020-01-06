@@ -4,37 +4,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Dynamic;
+using System.Collections;
 
 namespace Test
 {
     class Program
     {
-        class BinaryNode
+        class BinaryNode<T> where T: IComparable
         {
-            int Name;
+            T Name;
             string Side;
-            public BinaryNode LeftChild;
-            public BinaryNode RightChild;
-            public BinaryNode(int name)
+            public BinaryNode<T> LeftChild;
+            public BinaryNode<T> RightChild;
+            public BinaryNode(T name)
             {
                 Name = name;
                 Side = "Top";
             }
 
-            static public void TraversePreorder(BinaryNode node)
+            static public void TraversePreorder(BinaryNode<T> node)
             {
                 Console.WriteLine(node.Side + " - " + node.Name);
                 if (node.LeftChild != null) TraversePreorder(node.LeftChild);
                 if (node.RightChild != null) TraversePreorder(node.RightChild);
             }
 
-            public void AddNode(int value)
+            public void AddNode(T value)
             {
-                if (value < Name)
+                if (value.CompareTo(Name) < 0)
                 {
                     if (LeftChild == null)
                     {
-                        LeftChild = new BinaryNode(value);
+                        LeftChild = new BinaryNode<T>(value);
                         LeftChild.Side = "Left";
                     }
                     else
@@ -46,7 +47,7 @@ namespace Test
                 {
                     if (RightChild == null)
                     {
-                        RightChild = new BinaryNode(value);
+                        RightChild = new BinaryNode<T>(value);
                         RightChild.Side = "Right";
                     }
                     else
@@ -59,7 +60,7 @@ namespace Test
 
         static void Main(string[] args)
         {
-            BinaryNode binary = new BinaryNode(0);
+            BinaryNode<int> binary = new BinaryNode<int>(0);
             Random random = new Random();
             int value;
             for (int i = 0; i < 5; i++)
@@ -69,7 +70,7 @@ namespace Test
                 binary.AddNode(value);
             }
             Console.WriteLine();
-            BinaryNode.TraversePreorder(binary);
+            BinaryNode<int>.TraversePreorder(binary);
         }
 
     }
