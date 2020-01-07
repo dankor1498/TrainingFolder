@@ -29,6 +29,19 @@ namespace Test
                 if (node.RightChild != null) TraversePreorder(node.RightChild);
             }
 
+            static public void TraverseDepthFirst(BinaryNode<T> node)
+            {
+                Queue<BinaryNode<T>> binaryNodes = new Queue<BinaryNode<T>>();
+                binaryNodes.Enqueue(node);
+                while(binaryNodes.Count != 0)
+                {
+                    BinaryNode<T> binary = binaryNodes.Dequeue();
+                    Console.WriteLine(node.Side + " - " + node.Name);
+                    if (node.LeftChild != null) binaryNodes.Enqueue(node.LeftChild);
+                    if (node.RightChild != null) binaryNodes.Enqueue(node.RightChild);
+                }
+            }
+
             public void AddNode(T value)
             {
                 if (value.CompareTo(Name) < 0)
@@ -56,6 +69,8 @@ namespace Test
                     }
                 }
             }
+
+
         }
 
         static void Main(string[] args)
@@ -63,12 +78,14 @@ namespace Test
             BinaryNode<int> binary = new BinaryNode<int>(0);
             Random random = new Random();
             int value;
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 15; i++)
             {
                 value = random.Next(-10, 10);
                 Console.WriteLine(value);
                 binary.AddNode(value);
             }
+            Console.WriteLine();
+            BinaryNode<int>.TraversePreorder(binary);
             Console.WriteLine();
             BinaryNode<int>.TraversePreorder(binary);
         }
