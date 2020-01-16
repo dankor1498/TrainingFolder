@@ -1,0 +1,86 @@
+﻿@model IEnumerable<MyProject.Models.Product>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Створення сцени</title>
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="~/js/three.min.js"></script>
+    <script src="~/js/OrbitControls.js"></script>
+    <script src="~/js/main.js"></script>
+</head>
+<body>
+    <div class="contain">
+        <canvas id="canvas"></canvas>
+        <div class="form form-group">
+            <div class="row">
+                <input type="number" class="x11" name="11" value="1" id="11" step="0.01" onfocus="this.value=1">
+                <input type="number" name="12" value="0" id="12" step="0.01" onfocus="this.value=0">
+                <input type="number" name="13" value="0" id="13" step="0.01" onfocus="this.value=0">
+                <input type="number" class="x14" name="14" value="0" id="14" step="0.01" onfocus="this.value=0">
+            </div>
+            <div class="row">
+                <input type="number" name="21" value="0" id="21" step="0.01" onfocus="this.value=0">
+                <input type="number" name="22" value="1" id="22" step="0.01" onfocus="this.value=1">
+                <input type="number" name="23" value="0" id="23" step="0.01" onfocus="this.value=0">
+                <input type="number" name="24" value="0" id="24" step="0.01" onfocus="this.value=0">
+            </div>
+            <div class="row">
+                <input type="number" name="31" value="0" id="31" step="0.01" onfocus="this.value=0">
+                <input type="number" name="32" value="0" id="32" step="0.01" onfocus="this.value=0">
+                <input type="number" name="33" value="1" id="33" step="0.01" onfocus="this.value=1">
+                <input type="number" name="34" value="0" id="34" step="0.01" onfocus="this.value=0">
+            </div>
+            <div class="row">
+                <input type="number" class="x41" name="41" value="0" id="41" step="0.01" onfocus="this.value=0">
+                <input type="number" name="42" value="0" id="42" step="0.01" onfocus="this.value=0">
+                <input type="number" name="43" value="0" id="43" step="0.01" onfocus="this.value=0">
+                <input type="number" class="x44" name="44" value="1" id="44" step="0.01" onfocus="this.value=1">
+            </div>
+            <button id="btn1" class="btn btn-primary">Apply matrix</button>
+            <h4>History</h4>
+            <p id="p1"></p>
+        </div>
+    </div>
+
+</body>
+</html>
+
+@*<!DOCTYPE html>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="css/first.css" />
+        <link rel="stylesheet" href="css/second.css" />
+        <script src="js/third.js"></script>
+        <script src="js/fourth.js"></script>
+        <title>My MVC Project</title>
+    </head>
+    <body>
+        <div>
+            <h3>Autos</h3>
+            <p>Request Time: @DateTime.Now.ToString("HH:mm:ss")</p>
+                <table>
+                    <thead>
+                        <tr><td>Name</td><td>Price</td></tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var p in Model)
+                        {
+                            <tr>
+                                <td>@p.Name</td>
+                                <td>@($"{p.Price:C2}")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+        </div>
+    </body>
+    </html>*@
+

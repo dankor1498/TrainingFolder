@@ -21,3 +21,6 @@ E:\Documents\Предмети\Програмування\TrainingFolder\ASPTest\
 E:\Documents\Предмети\Програмування\TrainingFolder\ASPTest\Razor\Razor\obj\Debug\netcoreapp2.1\Razor.Views.pdb
 E:\Documents\Предмети\Програмування\TrainingFolder\ASPTest\Razor\Razor\obj\Debug\netcoreapp2.1\Razor.csproj.CopyComplete
 E:\Documents\Предмети\Програмування\TrainingFolder\ASPTest\Razor\Razor\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs
+E:\Documents\Предмети\Програмування\TrainingFolder\ASPTest\Razor\Razor\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.g.cshtml.cs
+E:\Documents\Предмети\Програмування\TrainingFolder\ASPTest\Razor\Razor\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_BasikLayout.g.cshtml.cs
+E:\Documents\Предмети\Програмування\TrainingFolder\ASPTest\Razor\Razor\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.g.cshtml.cs
