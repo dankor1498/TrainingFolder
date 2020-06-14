@@ -1,7 +1,0 @@
-E:\Documents\Предмети\Програмування\TrainingFolder\Rotate2DPoint\Rotate2DPoint\bin\Debug\Rotate2DPoint.exe.config
-E:\Documents\Предмети\Програмування\TrainingFolder\Rotate2DPoint\Rotate2DPoint\bin\Debug\Rotate2DPoint.exe
-E:\Documents\Предмети\Програмування\TrainingFolder\Rotate2DPoint\Rotate2DPoint\bin\Debug\Rotate2DPoint.pdb
-E:\Documents\Предмети\Програмування\TrainingFolder\Rotate2DPoint\Rotate2DPoint\obj\Debug\Rotate2DPoint.csprojAssemblyReference.cache
-E:\Documents\Предмети\Програмування\TrainingFolder\Rotate2DPoint\Rotate2DPoint\obj\Debug\Rotate2DPoint.csproj.CoreCompileInputs.cache
-E:\Documents\Предмети\Програмування\TrainingFolder\Rotate2DPoint\Rotate2DPoint\obj\Debug\Rotate2DPoint.exe
-E:\Documents\Предмети\Програмування\TrainingFolder\Rotate2DPoint\Rotate2DPoint\obj\Debug\Rotate2DPoint.pdb
