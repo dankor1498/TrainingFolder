@@ -15,7 +15,7 @@ namespace Certification
 
             // Second task
             Dictionary<Person, string> dict = new Dictionary<Person, string>();
-            dict.Add(new Person("Anna", 20), "Lviv" );
+            dict.Add(new Person("Anna", 20), "Lviv");
             dict.Add(new Person("Oleg", 21), "Dnipro");
 
             // This code will generate an error because this is the same Key as the first value.
@@ -52,12 +52,12 @@ namespace Certification
             Console.WriteLine();
 
             // Sixth task
-            Console.WriteLine(IsReverse(new[] {"a", "b", "c", "d"}, new[] {"d", "c", "b", "a"}));
-            Console.WriteLine(IsReverse(new[] {"a", "b", "c", "d"}, new[] {"a", "b", "c", "d"}));
+            Console.WriteLine(IsReverse(new[] { "a", "b", "c", "d" }, new[] { "d", "c", "b", "a" }));
+            Console.WriteLine(IsReverse(new[] { "a", "b", "c", "d" }, new[] { "a", "b", "c", "d" }));
             Console.WriteLine();
 
             // Seventh task
-            Console.WriteLine(SkippedNumber(new[] {0, 1, 2, 4, 5}));
+            Console.WriteLine(SkippedNumber(new[] { 0, 1, 2, 4, 5 }));
             Console.WriteLine();
 
             // Eighth task
@@ -72,11 +72,67 @@ namespace Certification
             Console.WriteLine();
 
             // Ninth task
-            foreach (var item in RebuildFunc(new[] {1, 2, 3, 4}, new[] {7, 7, 7}, 3))
+            foreach (var item in RebuildFunc(new[] { 1, 2, 3, 4 }, new[] { 7, 7, 7 }, 3))
             {
                 Console.Write(item + " ");
             }
             Console.WriteLine();
+
+            // 10
+            foreach (var item in SplitNumber(13345))
+            {
+                Console.Write(item + " ");
+            }
+            Console.WriteLine();
+
+            // 11
+            Console.WriteLine(FindNumber(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 5));
+            Console.WriteLine(FindNumber(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 0));
+            Console.WriteLine();
+
+            // 12
+            Console.WriteLine(FindWordsCount("Привет, Москва!Я гуляю Москва вечером Я гуляю Москва", "Москва"));
+            Console.WriteLine();
+
+            // 13
+            Console.WriteLine(DeleteWords("Lorem ipsum, word Lorem, Lorem"));
+        }
+
+        public static string DeleteWords(string str)
+        {
+            return string.Join(" ",
+                str.Split(new char[] { ' ', '.', ',' }, StringSplitOptions.RemoveEmptyEntries).Distinct());
+        }
+
+        public static int FindWordsCount(string str, string word)
+        {
+            int i = 0;
+            int x = -1;
+            int count = -1;
+            while (i != -1)
+            {
+                i = str.IndexOf(word, x + 1, StringComparison.Ordinal);
+                x = i;
+                count++;
+            }
+            //return count;
+            return str.Split(new string[] { word }, StringSplitOptions.None).Count() - 1;
+        }
+
+        public static int FindNumber(int[] arr, int num)
+        {
+            return arr.Contains(num) ? num : -1;
+        }
+
+        public static int[] SplitNumber(int i)
+        {
+            Stack<int> numbers = new Stack<int>();
+            while (i != 0)
+            {
+                numbers.Push(i % 10);
+                i /= 10;
+            }
+            return numbers.ToArray();
         }
 
         public static int[] RebuildFunc(int[] arr1, int[] arr2, int position)
@@ -95,7 +151,7 @@ namespace Certification
         static int CountEmail(List<string> emails)
         {
             var res = from email in emails
-                group email by email;
+                      group email by email;
             int count = 0;
             foreach (var r in res)
             {
@@ -117,7 +173,7 @@ namespace Certification
 
             return 0;
         }
-         
+
         static bool IsReverse(string[] arr1, string[] arr2)
         {
             if (arr1.Length == arr2.Length)
@@ -155,7 +211,7 @@ namespace Certification
         {
             return sentence
                 .Split()
-                .Select(item => item.Remove(0,1))
+                .Select(item => item.Remove(0, 1))
                 .ToList();
         }
     }
