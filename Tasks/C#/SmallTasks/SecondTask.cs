@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Certification
+namespace SmallTasks
 {
     public class Person
     {

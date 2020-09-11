@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Certification
+namespace SmallTasks
 {
     class Program
     {
@@ -14,9 +14,10 @@ namespace Certification
             Console.WriteLine();
 
             // Second task
-            Dictionary<Person, string> dict = new Dictionary<Person, string>();
-            dict.Add(new Person("Anna", 20), "Lviv");
-            dict.Add(new Person("Oleg", 21), "Dnipro");
+            Dictionary<Person, string> dict = new Dictionary<Person, string>
+            {
+                {new Person("Anna", 20), "Lviv"}, {new Person("Oleg", 21), "Dnipro"}
+            };
 
             // This code will generate an error because this is the same Key as the first value.
             // StackOverflow: Yes, it is possible, but you should override Equals and GetHashCode of your Person class.
@@ -28,6 +29,7 @@ namespace Certification
             {
                 Console.WriteLine($"Key: {item.Key.Name}, {item.Key.Age} Value: {item.Value}");
             }
+
             Console.WriteLine();
 
             // Third task
@@ -35,6 +37,7 @@ namespace Certification
             {
                 Console.WriteLine(word);
             }
+
             Console.WriteLine();
 
             // Fourth task
@@ -42,6 +45,7 @@ namespace Certification
             {
                 Console.WriteLine(word);
             }
+
             Console.WriteLine();
 
             // Fifth task
@@ -49,15 +53,16 @@ namespace Certification
             {
                 Console.WriteLine(word);
             }
+
             Console.WriteLine();
 
             // Sixth task
-            Console.WriteLine(IsReverse(new[] { "a", "b", "c", "d" }, new[] { "d", "c", "b", "a" }));
-            Console.WriteLine(IsReverse(new[] { "a", "b", "c", "d" }, new[] { "a", "b", "c", "d" }));
+            Console.WriteLine(IsReverse(new[] {"a", "b", "c", "d"}, new[] {"d", "c", "b", "a"}));
+            Console.WriteLine(IsReverse(new[] {"a", "b", "c", "d"}, new[] {"a", "b", "c", "d"}));
             Console.WriteLine();
 
             // Seventh task
-            Console.WriteLine(SkippedNumber(new[] { 0, 1, 2, 4, 5 }));
+            Console.WriteLine(SkippedNumber(new[] {0, 1, 2, 4, 5}));
             Console.WriteLine();
 
             // Eighth task
@@ -72,36 +77,104 @@ namespace Certification
             Console.WriteLine();
 
             // Ninth task
-            foreach (var item in RebuildFunc(new[] { 1, 2, 3, 4 }, new[] { 7, 7, 7 }, 3))
+            foreach (var item in RebuildFunc(new[] {1, 2, 3, 4}, new[] {7, 7, 7}, 3))
             {
                 Console.Write(item + " ");
             }
+
             Console.WriteLine();
 
-            // 10
+            // Tenth task
             foreach (var item in SplitNumber(13345))
             {
                 Console.Write(item + " ");
             }
+
             Console.WriteLine();
 
-            // 11
-            Console.WriteLine(FindNumber(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 5));
-            Console.WriteLine(FindNumber(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 0));
+            // Eleventh task
+            Console.WriteLine(FindNumber(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9}, 5));
+            Console.WriteLine(FindNumber(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9}, 0));
             Console.WriteLine();
 
-            // 12
-            Console.WriteLine(FindWordsCount("Привет, Москва!Я гуляю Москва вечером Я гуляю Москва", "Москва"));
+            // Twelfth task
+            Console.WriteLine(FindWordsCount("Start, hello I am here, start. Start new game!", "Start"));
             Console.WriteLine();
 
-            // 13
-            Console.WriteLine(DeleteWords("Lorem ipsum, word Lorem, Lorem"));
+            // Thirteenth task
+            Console.WriteLine(DeleteWords("Start, hello I am here, start.Start new game!"));
+
+            // Fourteenth task
+            foreach (var item in DeleteNegativeNumbers(new[] {1, -5, 5, 7, -4, 10}))
+            {
+                Console.Write(item + " ");
+            }
+
+            Console.WriteLine();
+
+            // Fifteenth task
+            foreach (var item in NextFiveNumbers(new List<int>() {1, 2, 3, 4, 5, 6, 7, 8}))
+            {
+                Console.Write(item + " ");
+            }
+
+            Console.WriteLine();
+
+            // Sixteenth task
+            foreach (var item in JoinArrays(new[] {1, 2, 3}, new[] {4, 5, 6}))
+            {
+                Console.Write(item + " ");
+            }
+
+            Console.WriteLine();
+        }
+
+        public static int[] JoinArrays(int[] arr1, int[] arr2)
+        {
+            int[] array = new int[arr1.Length + arr2.Length];
+            for (int i = 0, j = 0; i < array.Length; i++, j++)
+            {
+                array[i++] = arr1[j];
+                array[i] = arr2[j];
+            }
+
+            return array;
+        }
+
+        public static List<int> NextFiveNumbers(List<int> list)
+        {
+            List<int> listRes = new List<int>();
+            int count = list.Count >= 10 ? 10 : list.Count;
+            for (int i = 5; i < count; i++)
+            {
+                listRes.Add(list[i]);
+            }
+
+            return listRes;
+        }
+
+        public static int[] DeleteNegativeNumbers(int[] array)
+        {
+            if (array == null)
+                return null;
+            List<int> list = new List<int>();
+            foreach (var num in array)
+            {
+                if (num >= 0)
+                {
+                    list.Add(num);
+                }
+            }
+
+            list.Reverse();
+
+            return list.ToArray();
         }
 
         public static string DeleteWords(string str)
         {
             return string.Join(" ",
-                str.Split(new char[] { ' ', '.', ',' }, StringSplitOptions.RemoveEmptyEntries).Distinct());
+                str.Split(new char[] {' ', '.', ','}, StringSplitOptions.RemoveEmptyEntries).Distinct());
         }
 
         public static int FindWordsCount(string str, string word)
@@ -115,8 +188,10 @@ namespace Certification
                 x = i;
                 count++;
             }
-            //return count;
-            return str.Split(new string[] { word }, StringSplitOptions.None).Count() - 1;
+
+            return count;
+            // OR
+            // return str.Split(new string[] { word }, StringSplitOptions.None).Count() - 1;
         }
 
         public static int FindNumber(int[] arr, int num)
@@ -132,6 +207,7 @@ namespace Certification
                 numbers.Push(i % 10);
                 i /= 10;
             }
+
             return numbers.ToArray();
         }
 
@@ -151,7 +227,7 @@ namespace Certification
         static int CountEmail(List<string> emails)
         {
             var res = from email in emails
-                      group email by email;
+                group email by email;
             int count = 0;
             foreach (var r in res)
             {
@@ -164,7 +240,8 @@ namespace Certification
 
         static int SkippedNumber(int[] arr)
         {
-            //return (arr[^1] + 1) * arr[^1] / 2 -  arr.Sum();
+            // return (arr[^1] + 1) * arr[^1] / 2 -  arr.Sum();
+            // OR
             for (int i = 0; i < arr.Length - 1; i++)
             {
                 if (arr[i] + 1 != arr[i + 1])

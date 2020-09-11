@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
-namespace Certification
+namespace SmallTasks
 {
     public class FirstTask
     {
